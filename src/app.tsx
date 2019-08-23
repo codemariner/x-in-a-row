@@ -1,19 +1,11 @@
 import React from 'react'
 
+import Board from './components/board';
+
 import './index.scss'
 
 const App: React.FC<{}> = () => (
-  <div className='board'>
-    <div className='cell' />
-    <div className='cell' />
-    <div className='cell' />
-    <div className='cell' />
-    <div className='cell' />
-    <div className='cell' />
-    <div className='cell' />
-    <div className='cell' />
-    <div className='cell' />
-  </div>
+	<Board />
 )
 
 export default App

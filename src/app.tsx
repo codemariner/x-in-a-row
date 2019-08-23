@@ -5,7 +5,7 @@ import Board from './components/board';
 import './index.scss'
 
 const App: React.FC<{}> = () => (
-	<Board />
+	<Board/>
 )
 
 export default App

@@ -21,7 +21,7 @@ export interface CellSelection {
 
 // actions
 
-export const SELECT_CELL = 'SELECT_CELL';
+export const SELECT_CELL = 'SELECT_CELL'
 
 export interface SelectCellAction {
 	type: typeof SELECT_CELL

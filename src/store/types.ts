@@ -7,7 +7,7 @@ export interface CellState {
 	value?: CellValue
 }
 
-export type Cells  = {[k:string]:CellState}
+export type Cells = {[k:string]:CellState}
 
 export interface AppState {
 	rows: number

@@ -16,11 +16,11 @@ const Board: React.FC<BoardProps> = (props:BoardProps) => {
 	  return (<Cell
       key={`cell-${x},${y}`}
       x={x}
-	  y={y}
-	  value={value}
+      y={y}
+      value={value}
       onSelect={() => {
 			 if (!value) {
-          selectCell(x, y)
+          		selectCell(x, y)
 			 }
   }}
 	          />
@@ -30,7 +30,6 @@ const Board: React.FC<BoardProps> = (props:BoardProps) => {
 }
 
 const mapStateToProps = ({ cells, rows, columns }:AppState) => {
-  console.log('cells', cells)
   return { rows, columns, cells }
 }
 

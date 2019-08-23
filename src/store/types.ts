@@ -7,11 +7,15 @@ export interface CellState {
 	value?: CellValue
 }
 
+export type Cells  = {[k:string]:CellState}
+
 export interface AppState {
 	rows: number
 	columns: number
-	cells: {[k:string]: CellState}
-	nextValue: CellValue
+	cells: Cells
+	nextValue: CellValue,
+	winningLength: number,
+	winner?: CellValue
 }
 
 export interface CellSelection {

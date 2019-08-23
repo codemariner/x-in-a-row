@@ -16,7 +16,8 @@ const Board: React.FC<BoardProps> = (props:BoardProps) => {
 	  return (<Cell
       key={`cell-${x},${y}`}
       x={x}
-      y={y}
+	  y={y}
+	  value={value}
       onSelect={() => {
 			 if (!value) {
           selectCell(x, y)

@@ -1,4 +1,4 @@
-import { ActionTypes, BoardState, SELECT_CELL, SelectCellAction, CellValue, CellState } from './types'
+import { ActionTypes, SELECT_CELL, SelectCellAction, CellState } from './types'
 
 function createCells (rows:number, cols:number):{[k:string]:CellState} {
   const cells:{[k:string]:CellState} = {}
@@ -11,22 +11,30 @@ function createCells (rows:number, cols:number):{[k:string]:CellState} {
 }
 
 const initialState = {
-  board: {
-    rows: 3,
-    columns: 3,
-    cells: createCells(3, 3),
-    nextValue: 'X'
-  }
+  rows: 3,
+  columns: 3,
+  cells: createCells(3, 3),
+  nextValue: 'X'
 }
 
 function selectCell (state:any, x:number, y:number) {
-  return state
+  const newValue = state.nextValue
+  const nextValue = newValue === 'X' ? 'O' : 'X'
+
+  return {
+	  ...state,
+	  cells: {
+		  ...state.cells,
+		  [`${x},${y}`]: { x, y, value: newValue }
+	  },
+	  nextValue
+  }
 }
 
 export default function reducer (state = initialState, action: ActionTypes) {
   switch (action.type) {
     case (SELECT_CELL): {
-      const { x, y } = action.payload
+	  const { x, y } = action.payload
       return selectCell(state, x, y)
     }
     default:

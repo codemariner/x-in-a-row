@@ -1,5 +1,5 @@
 import { ActionTypes, Cells, CellValue, INITIALIZE_BOARD, SELECT_CELL, SelectCellAction, CellState, AppState } from './types'
-import initialState from './initialState'
+import initialState from './initial-state'
 
 function createCells (rows:number, cols:number):{[k:string]:CellState} {
   const cells:{[k:string]:CellState} = {}

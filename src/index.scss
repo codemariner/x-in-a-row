@@ -1,4 +1,4 @@
-$default-background: #D3D3D3;
+$default-background: #eeeeee;
 
 body {
     height: 100%;
@@ -20,9 +20,13 @@ body {
 			margin-right: 5px;
 		}
 	}
+	&-wrapper {
+		margin-top: 20px;
+	}
 }
 
 .board {
+	width: 90%;
     align-items: stretch;
 	display: flex;
 	flex-wrap: wrap;

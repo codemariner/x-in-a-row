@@ -1,23 +1,22 @@
 import React from 'react'
 
-import { connect } from 'react-redux'
-import { AppState } from '../store/types'
+import PlayerIcon from './player-icon'
 
 export type CellValue = 'X' | 'O';
 
 type CellProps = {
 	x: number
 	y: number
-	width?: number
+	width: number
 	value?: CellValue
 	onSelect: any
 }
 
 const Cell: React.FC<CellProps> = (props) => {
-  const { value, onSelect, width = 28} = props
+  const { value, onSelect, width } = props
   return (
     <div className='cell' style={{width: `${width}%`}}>
-      <a className='cell-value' onClick={onSelect}>{value}</a>
+      <a className='cell-value' onClick={onSelect}><PlayerIcon player={value}/></a>
     </div>
   )
 }

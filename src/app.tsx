@@ -1,6 +1,6 @@
 import React from 'react'
-
 import { connect } from 'react-redux'
+import Typography from '@material-ui/core/Typography'
 
 import Board from './components/board';
 import BoardForm from './components/form';
@@ -13,14 +13,14 @@ type AppProps = Pick<AppState, 'nextValue' | 'winner' | 'cells'>
 
 const App: React.FC<AppProps> = ({cells, winner}:AppProps) => (
 	<div>
-	<Board/>
-	{isEmpty(cells) || winner ?
-		(
-			<div>
-				<h2>Create a new board</h2>
-				<BoardForm/>
-			</div>
-		) : null}
+		<Board/>
+		{isEmpty(cells) || winner ?
+			(
+				<div className='board-form-wrapper'>
+					<Typography variant='h3'>{winner ? 'Start' : 'Create'} a new game</Typography>
+					<BoardForm/>
+				</div>
+			) : null}
 	</div>
 )
 

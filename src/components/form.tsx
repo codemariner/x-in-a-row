@@ -2,6 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { AppState } from '../store/types'
 import { initializeBoard } from '../store/actions'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
 
 interface BoardFormProps {
 	rows:number
@@ -16,8 +18,9 @@ const BoardForm = ({
   winningLength,
   initializeBoard
 }:BoardFormProps) => {
-  const onSubmit = (evt:any) => {
-    const inputs:HTMLCollection = evt.target.form.getElementsByTagName('input')
+  const onSubmit = () => {
+	const form = document.getElementById('newBoardForm')
+    const inputs:HTMLCollection = form.getElementsByTagName('input')
     const values:any = {}
     for (let i = 0; i < inputs.length; i++) {
       const input = (inputs[i] as HTMLInputElement)
@@ -30,19 +33,16 @@ const BoardForm = ({
     <div className='board-form'>
       <form id='newBoardForm'>
         <div className='row'>
-			<label>Rows: </label>
-          <input type='number' name='rows' defaultValue={`${rows}`} />
+          <TextField type='number' label='rows' name='rows' defaultValue={`${rows}`} variant='outlined' />
         </div>
         <div className='row'>
-			<label>Columns:</label>
-          <input type='number' name='columns' defaultValue={`${columns}`} />
+          <TextField type='number' label='columns' name='columns' defaultValue={`${columns}`} variant='outlined'/>
         </div>
         <div className='row'>
-			<label>How many in a row to win:</label>
-          <input type='number' name='winningLength' defaultValue={`${winningLength}`} />
+          <TextField type='number' label='How many in a row' name='winningLength' defaultValue={`${winningLength}`} variant='outlined'/>
         </div>
         <div className='row'>
-        	<button type='button' name='submit' value='create' onClick={onSubmit}>Create</button>
+        	<Button type='button' name='submit' value='create' onClick={onSubmit} variant='contained'>Create</Button>
 		</div>
       </form>
     </div>

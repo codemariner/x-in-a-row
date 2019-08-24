@@ -102,6 +102,7 @@ export default function reducer (state = initialState, action: ActionTypes) {
 		  rows,
 		  columns,
 		  winningLength,
+		  history: [],
 		  cells: createCells(rows, columns),
 		  winner: undefined
 	  }

@@ -13,6 +13,7 @@ export interface AppState {
 	rows: number
 	columns: number
 	cells: Cells
+	history: any[]
 	nextValue: CellValue,
 	winningLength: number,
 	winner?: CellValue
@@ -26,6 +27,7 @@ export interface CellSelection {
 // actions
 
 export const SELECT_CELL = 'SELECT_CELL'
+export const UNDO = 'UNDO'
 export const INITIALIZE_BOARD = 'INITIALIZE_BOARD'
 
 export interface SelectCellAction {
@@ -42,4 +44,8 @@ export interface InitializeBoardAction {
 	}
 }
 
-export type ActionTypes = SelectCellAction | InitializeBoardAction;
+export interface UndoAction {
+	type: typeof UNDO
+}
+
+export type ActionTypes = SelectCellAction | InitializeBoardAction | UndoAction;

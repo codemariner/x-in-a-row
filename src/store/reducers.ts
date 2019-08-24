@@ -1,4 +1,4 @@
-import { ActionTypes, Cells, CellValue, INITIALIZE_BOARD, SELECT_CELL, SelectCellAction, CellState, AppState } from './types'
+import { ActionTypes, Cells, CellValue, INITIALIZE_BOARD, SELECT_CELL, SelectCellAction, CellState, AppState, UNDO } from './types'
 import initialState from './initial-state'
 
 function createCells (rows:number, cols:number):{[k:string]:CellState} {
@@ -77,7 +77,8 @@ function selectCell (state:AppState, x:number, y:number) {
 		  [`${x},${y}`]: newCellState
 	  },
 	  nextValue,
-	  winner: evaluateWinner(state, newCellState)
+	  winner: evaluateWinner(state, newCellState),
+	  history: state.history.concat([state])
   }
 }
 
@@ -86,7 +87,14 @@ export default function reducer (state = initialState, action: ActionTypes) {
     case (SELECT_CELL): {
 	  const { x, y } = action.payload
       return selectCell(state, x, y)
-    }
+	}
+	case (UNDO): {
+		const previousState = state.history.pop();
+		if (!previousState) {
+			return state
+		}
+		return previousState
+	}
     case (INITIALIZE_BOARD): {
 	  const { rows, columns, winningLength } = action.payload
 	  return {

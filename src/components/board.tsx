@@ -1,26 +1,32 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Grid from '@material-ui/core/Grid'
+import Button from '@material-ui/core/Button'
+import UndoIcon from '@material-ui/icons/Undo'
 
 import Cell from './cell'
 import { AppState, CellState, CellValue } from '../store/types'
-import { selectCell } from '../store/actions'
+import { selectCell, undo } from '../store/actions'
 import PlayerIcon from './player-icon';
 import { isEmpty } from '../lib/utils';
 
 export type BoardProps = {
 	columns: number
+	history: any[]
 	selectCell: typeof selectCell
 	nextValue: CellValue
 	winner: CellValue
 	cells: {[k:string]: CellState}
+	undo: typeof undo
 }
 
 const Board: React.FC<BoardProps> = ({
 	cells,
 	columns,
+	history,
 	nextValue,
 	selectCell,
+	undo,
 	winner
 }:BoardProps) => {
 	if (isEmpty(cells)) {
@@ -49,7 +55,7 @@ const Board: React.FC<BoardProps> = ({
   const playerValue = winner ? winner : nextValue
   const text = winner ? 'Winner! ' : 'Next Player: '
   return (
-	<div className='board-wrapper'>
+	<Grid container className='board-wrapper'>
 		<Grid container>
 			<Grid item style={{padding: '3px 0 0 0'}}>
 				{text}
@@ -58,18 +64,23 @@ const Board: React.FC<BoardProps> = ({
 				<PlayerIcon player={playerValue} style={iconStyle} />
 			</Grid>
 		</Grid>
-	  	<div className='board'>
-	 		{children}
-	 	</div>
-	</div>
+		<Grid container className='board'>
+ 			{children}
+		</Grid>
+		<Grid container justify='flex-end' style={{margin:'10px 0'}}>
+			<Grid item>
+				<Button variant='contained' disabled={isEmpty(history)} onClick={undo}>Undo <UndoIcon /></Button>
+			</Grid>
+		</Grid>
+	</Grid>
   );
 }
 
-const mapStateToProps = ({ cells, rows, columns, nextValue, winner }:AppState) => {
-  return { rows, columns, cells, nextValue, winner }
+const mapStateToProps = ({ cells, rows, columns, history, nextValue, winner }:AppState) => {
+  return { rows, columns, cells, history, nextValue, winner }
 }
 
 export default connect(
   mapStateToProps,
-  { selectCell }
+  { selectCell, undo }
 )(Board)

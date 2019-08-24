@@ -1,6 +1,7 @@
 import {
   INITIALIZE_BOARD, InitializeBoardAction,
-  SELECT_CELL, SelectCellAction
+  SELECT_CELL, SelectCellAction,
+  UNDO, UndoAction
 } from './types'
 
 export function initializeBoard (rows:number, columns:number, winningLength:number):InitializeBoardAction {
@@ -19,4 +20,10 @@ export function selectCell (x:number, y:number):SelectCellAction {
     type: SELECT_CELL,
     payload: { x, y }
   }
+}
+
+export function undo (): UndoAction {
+	return {
+		type: UNDO
+	}
 }

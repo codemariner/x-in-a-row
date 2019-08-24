@@ -11,16 +11,16 @@ import './index.scss'
 
 type AppProps = Pick<AppState, 'nextValue' | 'winner' | 'cells'>
 
-const App: React.FC<AppProps> = ({cells, nextValue, winner}:AppProps) => (
-	<div className="wrapper">
-		{isEmpty(cells) ?
-			(
-				<div>
-					<h2>Create a new board</h2>
-					<BoardForm/>
-				</div>
-			) :
-			<Board/>}
+const App: React.FC<AppProps> = ({cells, winner}:AppProps) => (
+	<div>
+	<Board/>
+	{isEmpty(cells) || winner ?
+		(
+			<div>
+				<h2>Create a new board</h2>
+				<BoardForm/>
+			</div>
+		) : null}
 	</div>
 )
 

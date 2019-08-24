@@ -29,19 +29,21 @@ const BoardForm = ({
   return (
     <div className='board-form'>
       <form id='newBoardForm'>
-        <div>
-					Rows:
+        <div className='row'>
+			<label>Rows: </label>
           <input type='number' name='rows' defaultValue={`${rows}`} />
         </div>
-        <div>
-					Columns:
+        <div className='row'>
+			<label>Columns:</label>
           <input type='number' name='columns' defaultValue={`${columns}`} />
         </div>
-        <div>
-					How many in a row to win:
+        <div className='row'>
+			<label>How many in a row to win:</label>
           <input type='number' name='winningLength' defaultValue={`${winningLength}`} />
         </div>
-        <button type='button' name='submit' value='create' onClick={onSubmit}>Create</button>
+        <div className='row'>
+        	<button type='button' name='submit' value='create' onClick={onSubmit}>Create</button>
+		</div>
       </form>
     </div>
   )

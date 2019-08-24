@@ -94,7 +94,8 @@ export default function reducer (state = initialState, action: ActionTypes) {
 		  rows,
 		  columns,
 		  winningLength,
-		  cells: createCells(rows, columns)
+		  cells: createCells(rows, columns),
+		  winner: undefined
 	  }
     }
     default:

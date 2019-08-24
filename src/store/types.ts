@@ -14,9 +14,10 @@ export interface AppState {
 	columns: number
 	cells: Cells
 	history: any[]
-	nextValue: CellValue,
-	winningLength: number,
+	nextValue: CellValue
+	winningLength: number
 	winner?: CellValue
+	winningCells?: CellState[]
 }
 
 export interface CellSelection {

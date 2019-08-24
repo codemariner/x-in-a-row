@@ -52,6 +52,9 @@ body {
 			opacity: 1;
 			transition: all 0.3s;
 		}
+		&.winner {
+			color: red;
+		}
 	}
 	.cell:before {
 		content:'';

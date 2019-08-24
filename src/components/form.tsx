@@ -19,7 +19,7 @@ const BoardForm = ({
   initializeBoard
 }:BoardFormProps) => {
   const onSubmit = () => {
-	const form = document.getElementById('newBoardForm')
+    const form = document.getElementById('newBoardForm')
     const inputs:HTMLCollection = form.getElementsByTagName('input')
     const values:any = {}
     for (let i = 0; i < inputs.length; i++) {
@@ -36,14 +36,14 @@ const BoardForm = ({
           <TextField type='number' label='rows' name='rows' defaultValue={`${rows}`} variant='outlined' />
         </div>
         <div className='row'>
-          <TextField type='number' label='columns' name='columns' defaultValue={`${columns}`} variant='outlined'/>
+          <TextField type='number' label='columns' name='columns' defaultValue={`${columns}`} variant='outlined' />
         </div>
         <div className='row'>
-          <TextField type='number' label='How many in a row' name='winningLength' defaultValue={`${winningLength}`} variant='outlined'/>
+          <TextField type='number' label='How many in a row' name='winningLength' defaultValue={`${winningLength}`} variant='outlined' />
         </div>
         <div className='row'>
-        	<Button type='button' name='submit' value='create' onClick={onSubmit} variant='contained'>Create</Button>
-		</div>
+          <Button type='button' name='submit' value='create' onClick={onSubmit} variant='contained'>Create</Button>
+        </div>
       </form>
     </div>
   )

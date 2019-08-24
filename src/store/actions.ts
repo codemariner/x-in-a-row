@@ -23,7 +23,7 @@ export function selectCell (x:number, y:number):SelectCellAction {
 }
 
 export function undo (): UndoAction {
-	return {
-		type: UNDO
-	}
+  return {
+    type: UNDO
+  }
 }

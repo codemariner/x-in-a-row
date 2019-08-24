@@ -13,7 +13,7 @@ type CellProps = {
 }
 
 const Cell: React.FC<CellProps> = (props) => {
-  const { x, y, value, onSelect } = props
+  const { value, onSelect } = props
   return (
     <div className='cell'>
       <a className='cell-value' onClick={onSelect}>{value}</a>

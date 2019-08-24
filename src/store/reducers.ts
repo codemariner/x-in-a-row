@@ -1,5 +1,15 @@
-import { ActionTypes, Cells, CellValue, SELECT_CELL, SelectCellAction, CellState, AppState } from './types'
+import { ActionTypes, Cells, CellValue, INITIALIZE_BOARD, SELECT_CELL, SelectCellAction, CellState, AppState } from './types'
 import initialState from './initialState'
+
+function createCells (rows:number, cols:number):{[k:string]:CellState} {
+  const cells:{[k:string]:CellState} = {}
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+      cells[`${x},${y}`] = { x, y }
+    }
+  }
+  return cells
+}
 
 interface NextCellFn {
 	(cell:CellState): CellState|void
@@ -76,6 +86,16 @@ export default function reducer (state = initialState, action: ActionTypes) {
     case (SELECT_CELL): {
 	  const { x, y } = action.payload
       return selectCell(state, x, y)
+    }
+    case (INITIALIZE_BOARD): {
+	  const { rows, columns, winningLength } = action.payload
+	  return {
+		  ...state,
+		  rows,
+		  columns,
+		  winningLength,
+		  cells: createCells(rows, columns)
+	  }
     }
     default:
       return state

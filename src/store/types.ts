@@ -26,10 +26,20 @@ export interface CellSelection {
 // actions
 
 export const SELECT_CELL = 'SELECT_CELL'
+export const INITIALIZE_BOARD = 'INITIALIZE_BOARD'
 
 export interface SelectCellAction {
 	type: typeof SELECT_CELL
 	payload: CellSelection
 }
 
-export type ActionTypes = SelectCellAction;
+export interface InitializeBoardAction {
+	type: typeof INITIALIZE_BOARD
+	payload: {
+		rows: number
+		columns: number
+		winningLength: number
+	}
+}
+
+export type ActionTypes = SelectCellAction | InitializeBoardAction;

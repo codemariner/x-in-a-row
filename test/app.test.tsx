@@ -1,12 +1,26 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
+import { Provider } from 'react-redux';
 
 import App from '../src/app';
+import Form from '../src/components/form'
+
+import configureStore from '../src/store'
+import { Store } from 'redux';
 
 describe('App', () => {
-    it('renders without crashing', () => {
-        const wrapper = shallow(<App />);
+	let store:Store
 
-        expect(wrapper).toBeTruthy();
+	beforeEach(() => {
+		store = configureStore()
+	})
+
+    it('renders the create new game form by default', () => {
+        const wrapper = mount(
+		    <Provider store={store}>
+		        <App />
+			</Provider>
+		)
+		expect(wrapper.find(Form)).toHaveLength(1)
     });
 });

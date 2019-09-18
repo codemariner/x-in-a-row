@@ -1,6 +1,8 @@
 import { AppState } from './types';
 
 const initialState: AppState = {
+	animating: false,
+	gravityEnabled: false,
     rows: 3,
     columns: 3,
     history: [],

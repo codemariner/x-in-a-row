@@ -1,12 +1,13 @@
 import { INITIALIZE_BOARD, InitializeBoardAction, SELECT_CELL, SelectCellAction, UNDO, UndoAction } from './types';
 
-export function initializeBoard(rows: number, columns: number, winningLength: number): InitializeBoardAction {
+export function initializeBoard(rows: number, columns: number, winningLength: number, gravityEnabled: boolean): InitializeBoardAction {
     return {
         type: INITIALIZE_BOARD,
         payload: {
             rows,
             columns,
-            winningLength
+			winningLength,
+			gravityEnabled
         }
     };
 }

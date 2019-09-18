@@ -15,7 +15,7 @@ describe('actions', () => {
 
 	describe('initializeBoard', () => {
 		it('should dispatch an action that provide information for creating a new board', () => {
-			store.dispatch(initializeBoard(5, 5, 4));
+			store.dispatch(initializeBoard(5, 5, 4, false));
 			expect(store.getActions()).toEqual([{ type: 'INITIALIZE_BOARD', payload: { rows: 5, columns: 5, winningLength: 4 }}])
 		})
 	})

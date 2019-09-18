@@ -12,7 +12,7 @@ describe('reducers', () => {
 
 	describe('selectCell', () => {
 		beforeEach(() => {
-			store.dispatch(initializeBoard(5, 5, 3))
+			store.dispatch(initializeBoard(5, 5, 3, false))
 		})
 
 		it('should assign a winner for horizontal', () => {

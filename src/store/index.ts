@@ -7,7 +7,6 @@ export default function configureStore():Store {
         reducers,
         composeWithDevTools(
             applyMiddleware(store => next => action => {
-                store.getState;
                 next(action);
             })
         )

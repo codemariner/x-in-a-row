@@ -102,12 +102,13 @@ export default function reducer(state = initialState, action: ActionTypes) {
             return previousState;
         }
         case INITIALIZE_BOARD: {
-            const { rows, columns, winningLength } = action.payload;
+            const { rows, columns, gravityEnabled, winningLength } = action.payload;
             return {
                 ...state,
                 rows,
                 columns,
-                winningLength,
+				winningLength,
+				gravityEnabled,
                 history: [],
                 cells: createCells(rows, columns),
                 winner: undefined,

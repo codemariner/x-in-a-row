@@ -12,7 +12,8 @@ import PlayerIcon from './player-icon';
 import { isEmpty } from '../lib/utils';
 
 export type BoardProps = {
-    columns: number;
+	columns: number;
+	gravityEnabled: boolean;
     history: any[];
     initializeBoard: typeof initializeBoard;
     selectCell: typeof selectCell;
@@ -25,9 +26,28 @@ export type BoardProps = {
     undo: typeof undo;
 };
 
+type HeaderProps = {
+	column: number
+	width: number
+	nextValue: CellValue
+};
+
+export const Header: React.FC<HeaderProps> = ({
+	column,
+	width,
+	nextValue
+}: HeaderProps) => {
+    return (
+        <div className={`header`} style={{ textAlign: 'center', height: '50px', width: `${width}%` }}>
+            <PlayerIcon style={{height: '20px'}} player={nextValue} />
+        </div>
+    );
+};
+
 const Board: React.FC<BoardProps> = ({
     cells,
-    columns,
+	columns,
+	gravityEnabled,
     history,
     nextValue,
     rows,
@@ -40,7 +60,11 @@ const Board: React.FC<BoardProps> = ({
 }: BoardProps) => {
     if (isEmpty(cells)) {
         return null;
-    }
+	}
+	const headers = gravityEnabled ? new Array(columns).fill(1).map((val, index) => (
+		<Header key={`header-${index}`} column={index} nextValue={nextValue} width={100 / columns}/>
+	)) : [];
+
     const children = Object.values(cells).map(cell => {
         const { x, y, value } = cell;
         return (
@@ -77,14 +101,14 @@ const Board: React.FC<BoardProps> = ({
                 </Grid>
             </Grid>
             <Grid container className="board">
-                {children}
+                {headers.concat(children)}
             </Grid>
             <Grid container justify="space-between" style={{ margin: '10px 0' }}>
                 <Grid item>
                     <Button
                         variant="contained"
                         disabled={isEmpty(history)}
-                        onClick={() => initializeBoard(rows, columns, winningLength)}
+                        onClick={() => initializeBoard(rows, columns, winningLength, gravityEnabled)}
                     >
                         Restart <RestartIcon />
                     </Button>
@@ -102,14 +126,15 @@ const Board: React.FC<BoardProps> = ({
 const mapStateToProps = ({
     cells,
     rows,
-    columns,
+	columns,
+	gravityEnabled,
     history,
     nextValue,
     winner,
     winningCells,
     winningLength
 }: AppState) => {
-    return { rows, columns, cells, history, nextValue, winner, winningCells, winningLength };
+    return { rows, columns, cells, gravityEnabled, history, nextValue, winner, winningCells, winningLength };
 };
 
 export default connect(

@@ -32,13 +32,13 @@ body {
 	flex-wrap: wrap;
     justify-content: space-around;
 	min-width: 300px;
-	background-color: #fff;
 
 	.cell {
 		border: 1px solid #000;
 		flex: 1 0 auto;
 		height:auto;
 		position: relative;
+		background-color: #fff;
 
 		.cell-value {
 			position:absolute;

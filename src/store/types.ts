@@ -9,6 +9,8 @@ export interface CellState {
 export type Cells = { [k: string]: CellState };
 
 export interface AppState {
+	animating: boolean;
+	gravityEnabled: boolean;
     rows: number;
     columns: number;
     cells: Cells;
@@ -40,7 +42,8 @@ export interface InitializeBoardAction {
     payload: {
         rows: number;
         columns: number;
-        winningLength: number;
+		winningLength: number;
+		gravityEnabled: boolean;
     };
 }
 
